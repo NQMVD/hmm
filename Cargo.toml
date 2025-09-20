@@ -1,0 +1,23 @@
+[package]
+name = "rust-mind-map"
+version = "0.1.0"
+edition = "2021"
+description = "A terminal-based mind mapping tool written in Rust"
+license = "GPL-3.0"
+authors = ["Rust Rewrite"]
+
+[[bin]]
+name = "rust-mind-map"
+path = "src/main.rs"
+
+[dependencies]
+ratatui = "0.26"
+crossterm = "0.27"
+clap = { version = "4.4", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }
+toml = "0.8"
+uuid = { version = "1.0", features = ["v4", "serde"] }
+arboard = "3.3"
+regex = "1.10"
+dirs = "5.0"
+html-escape = "0.2"
