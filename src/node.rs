@@ -158,3 +158,41 @@ impl Node {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    
+    #[test]
+    fn test_node_creation() {
+        let mut root = Node::new("Root".to_string());
+        let child_id = root.add_child("Child".to_string());
+        
+        assert_eq!(root.children.len(), 1);
+        assert_eq!(root.children[0].text, "Child");
+        assert_eq!(root.children[0].id, child_id);
+    }
+    
+    #[test] 
+    fn test_node_search() {
+        let mut root = Node::new("Root".to_string());
+        root.add_child("First Child".to_string());
+        root.add_child("Second Child".to_string());
+        
+        let results = root.search("First");
+        assert_eq!(results.len(), 1);
+        
+        let results = root.search("Child");
+        assert_eq!(results.len(), 2);
+    }
+    
+    #[test]
+    fn test_node_collapse() {
+        let mut root = Node::new("Root".to_string());
+        root.add_child("Child".to_string());
+        
+        assert!(!root.collapsed);
+        root.collapsed = true;
+        assert!(root.collapsed);
+    }
+}
